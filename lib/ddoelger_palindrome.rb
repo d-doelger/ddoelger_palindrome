@@ -1,17 +1,27 @@
 require "ddoelger_palindrome/version"
 
+module DdoelgerPalindrome
 
-  class String
-
-    # Returns true for a palindrome, false otherwise.
-    def palindrome?
+  # Returns true for a palindrome, false otherwise.
+  def palindrome?
+     if processed_content.empty?
+      false
+     else
       processed_content == processed_content.reverse
-    end
-
-    private
-
-      # Returns content for palindrome testing.
-      def processed_content
-        self.scan(/[a-z]/i).join.downcase
-      end
+     end
   end
+
+  private
+
+    # Returns content for palindrome testing.
+    def processed_content
+      self.to_s.scan(/[a-z\d]/i).join.downcase
+    end
+end
+
+class String
+  include DdoelgerPalindrome
+end
+class Integer
+  include DdoelgerPalindrome
+end
